@@ -14,7 +14,7 @@ def get_banks():
 @app.route('/banks/<int:bank_id>/branches/<int:branch_id>')
 def get_branch(bank_id, branch_id):
     cur = mysql.connection.cursor()
-    cur.execute('SELECT id, name, address, hours, phone FROM branches WHERE bank_id = %s AND id = %s', (bank_id, branch_id))
+    cur.execute('SELECT * FROM branches WHERE bank_id = %s AND id = %s', (bank_id, branch_id))
     branch = cur.fetchone()
     cur.close()
     return jsonify(branch)
